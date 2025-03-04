@@ -14,6 +14,12 @@ public class UnitConverter {
         System.out.println("7. Meters to Inches");
         System.out.println("8. Inches to Meters");
         System.out.println("9. Inches to Centimeters");
+        System.out.println("10. Fahrenheit to Celsius");
+        System.out.println("11. Celsius to Fahrenheit");
+        System.out.println("12. Pounds to Kilograms");
+        System.out.println("13. Kilograms to Pounds");
+        System.out.println("14. Gallons to Liters");
+        System.out.println("15. Liters to Gallons");
         System.out.print("Enter your choice: ");
         int choice = sc.nextInt();
 
@@ -58,6 +64,30 @@ public class UnitConverter {
                 result = convertInchesToCentimeters(value);
                 System.out.println(value + " inches = " + result + " cm");
                 break;
+            case 10:
+                result = convertFahrenheitToCelsius(value);
+                System.out.println(value + " °F = " + result + " °C");
+                break;
+            case 11:
+                result = convertCelsiusToFahrenheit(value);
+                System.out.println(value + " °C = " + result + " °F");
+                break;
+            case 12:
+                result = convertPoundsToKilograms(value);
+                System.out.println(value + " pounds = " + result + " kg");
+                break;
+            case 13:
+                result = convertKilogramsToPounds(value);
+                System.out.println(value + " kg = " + result + " pounds");
+                break;
+            case 14:
+                result = convertGallonsToLiters(value);
+                System.out.println(value + " gallons = " + result + " liters");
+                break;
+            case 15:
+                result = convertLitersToGallons(value);
+                System.out.println(value + " liters = " + result + " gallons");
+                break;
             default:
                 System.out.println("Invalid choice!");
         }
@@ -65,47 +95,62 @@ public class UnitConverter {
     }
 
     public static double convertKmToMiles(double km) {
-        double km2miles = 0.621371;
-        return km * km2miles;
+        return km * 0.621371;
     }
 
     public static double convertMilesToKm(double miles) {
-        double miles2km = 1.60934;
-        return miles * miles2km;
+        return miles * 1.60934;
     }
 
     public static double convertMetersToFeet(double meters) {
-        double meters2feet = 3.28084;
-        return meters * meters2feet;
+        return meters * 3.28084;
     }
 
     public static double convertFeetToMeters(double feet) {
-        double feet2meters = 0.3048;
-        return feet * feet2meters;
+        return feet * 0.3048;
     }
     
     public static double convertYardsToFeet(double yards) {
-        double yards2feet = 3;
-        return yards * yards2feet;
+        return yards * 3;
     }
 
     public static double convertFeetToYards(double feet) {
-        double feet2yards = 0.333333;
-        return feet * feet2yards;
+        return feet * 0.333333;
     }
 
     public static double convertMetersToInches(double meters) {
-        double meters2inches = 39.3701;
-        return meters * meters2inches;
+        return meters * 39.3701;
     }
 
     public static double convertInchesToMeters(double inches) {
-        double inches2meters = 0.0254;
-        return inches * inches2meters;
+        return inches * 0.0254;
     }
 
     public static double convertInchesToCentimeters(double inches) {
-        double inches2cm = 2.54;
-        return inches * inches2cm;
+        return inches * 2.54;
+    }
+
+    public static double convertFahrenheitToCelsius(double fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+
+    public static double convertCelsiusToFahrenheit(double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    public static double convertPoundsToKilograms(double pounds) {
+        return pounds * 0.453592;
+    }
+
+    public static double convertKilogramsToPounds(double kilograms) {
+        return kilograms * 2.20462;
+    }
+
+    public static double convertGallonsToLiters(double gallons) {
+        return gallons * 3.78541;
+    }
+
+    public static double convertLitersToGallons(double liters) {
+        return liters * 0.264172;
     }
 }
