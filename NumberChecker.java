@@ -66,6 +66,48 @@ class NumberChecker {
         System.out.println("Second Smallest Digit: " + secondSmallest);
     }
 
+    // Method to find the sum of the digits of a number
+    public static int sumOfDigits(int num) {
+        int sum = 0;
+        int[] digits = getDigitsArray(num);
+        for (int digit : digits) {
+            sum += digit;
+        }
+        return sum;
+    }
+
+    // Method to find the sum of the squares of the digits of a number
+    public static int sumOfSquaresOfDigits(int num) {
+        int sum = 0;
+        int[] digits = getDigitsArray(num);
+        for (int digit : digits) {
+            sum += Math.pow(digit, 2);
+        }
+        return sum;
+    }
+
+    // Method to check if a number is a Harshad Number
+    public static boolean isHarshadNumber(int num) {
+        int sum = sumOfDigits(num);
+        return num % sum == 0;
+    }
+
+    // Method to find the frequency of each digit in the number
+    public static int[][] digitFrequency(int num) {
+        int[] digits = getDigitsArray(num);
+        int[][] freq = new int[10][2];
+
+        for (int i = 0; i < 10; i++) {
+            freq[i][0] = i;
+            freq[i][1] = 0;
+        }
+
+        for (int digit : digits) {
+            freq[digit][1]++;
+        }
+        return freq;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a number: ");
@@ -74,8 +116,18 @@ class NumberChecker {
         System.out.println("Number of digits: " + countDigits(num));
         System.out.println("Is Duck Number? " + isDuckNumber(num));
         System.out.println("Is Armstrong Number? " + isArmstrong(num));
-
         findLargestAndSecondLargest(num);
         findSmallestAndSecondSmallest(num);
+        System.out.println("Sum of digits: " + sumOfDigits(num));
+        System.out.println("Sum of squares of digits: " + sumOfSquaresOfDigits(num));
+        System.out.println("Is Harshad Number? " + isHarshadNumber(num));
+        
+        int[][] frequency = digitFrequency(num);
+        System.out.println("Digit Frequency:");
+        for (int i = 0; i < 10; i++) {
+            if (frequency[i][1] > 0) {
+                System.out.println("Digit " + frequency[i][0] + ": " + frequency[i][1] + " times");
+            }
+        }
     }
 }
