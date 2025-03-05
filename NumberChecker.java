@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 class NumberChecker {
 
@@ -108,25 +109,47 @@ class NumberChecker {
         return freq;
     }
 
+    // Method to reverse the digits array
+    public static int[] reverseDigitsArray(int[] digits) {
+        int[] reversed = new int[digits.length];
+        for (int i = 0; i < digits.length; i++) {
+            reversed[i] = digits[digits.length - 1 - i];
+        }
+        return reversed;
+    }
+
+    // Method to compare two arrays and check if they are equal
+    public static boolean areArraysEqual(int[] arr1, int[] arr2) {
+        return Arrays.equals(arr1, arr2);
+    }
+
+    // Method to check if a number is a palindrome
+    public static boolean isPalindrome(int num) {
+        int[] digits = getDigitsArray(num);
+        int[] reversed = reverseDigitsArray(digits);
+        return areArraysEqual(digits, reversed);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int num = sc.nextInt();
 
         System.out.println("Number of digits: " + countDigits(num));
+        System.out.println("Is Palindrome? " + isPalindrome(num));
         System.out.println("Is Duck Number? " + isDuckNumber(num));
         System.out.println("Is Armstrong Number? " + isArmstrong(num));
         findLargestAndSecondLargest(num);
         findSmallestAndSecondSmallest(num);
-        System.out.println("Sum of digits: " + sumOfDigits(num));
-        System.out.println("Sum of squares of digits: " + sumOfSquaresOfDigits(num));
+        System.out.println("Sum of Digits: " + sumOfDigits(num));
+        System.out.println("Sum of Squares of Digits: " + sumOfSquaresOfDigits(num));
         System.out.println("Is Harshad Number? " + isHarshadNumber(num));
-        
+
         int[][] frequency = digitFrequency(num);
         System.out.println("Digit Frequency:");
         for (int i = 0; i < 10; i++) {
             if (frequency[i][1] > 0) {
-                System.out.println("Digit " + frequency[i][0] + ": " + frequency[i][1] + " times");
+                System.out.println("Digit " + frequency[i][0] + " appears " + frequency[i][1] + " times");
             }
         }
     }
