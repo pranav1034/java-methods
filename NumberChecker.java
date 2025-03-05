@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 
 class NumberChecker {
 
@@ -167,15 +166,105 @@ class NumberChecker {
         return num % 7 == 0 || num % 10 == 7;
     }
 
+    public static int[] findFactors(int num) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) count++;
+        }
+        int[] factors = new int[count];
+        int index = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) factors[index++] = i;
+        }
+        return factors;
+    }
+
+    public static int greatestFactor(int num) {
+        int[] factors = findFactors(num);
+        return factors[factors.length - 2];
+    }
+
+    public static int sumOfFactors(int num) {
+        int sum = 0;
+        int[] factors = findFactors(num);
+        for (int factor : factors) {
+            sum += factor;
+        }
+        return sum;
+    }
+
+    public static long productOfFactors(int num) {
+        long product = 1;
+        int[] factors = findFactors(num);
+        for (int factor : factors) {
+            product *= factor;
+        }
+        return product;
+    }
+
+    public static long productOfCubeOfFactors(int num) {
+        long product = 1;
+        int[] factors = findFactors(num);
+        for (int factor : factors) {
+            product *= Math.pow(factor, 3);
+        }
+        return product;
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        return sumOfFactors(num) - num == num;
+    }
+
+    public static boolean isAbundantNumber(int num) {
+        return sumOfFactors(num) - num > num;
+    }
+
+    public static boolean isDeficientNumber(int num) {
+        return sumOfFactors(num) - num < num;
+    }
+
+    public static boolean isStrongNumber(int num) {
+        int sum = 0;
+        int[] digits = getDigitsArray(num);
+        for (int digit : digits) {
+            sum += factorial(digit);
+        }
+        return sum == num;
+    }
+
+    public static int factorial(int num) {
+        int fact = 1;
+        for (int i = 1; i <= num; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int num = sc.nextInt();
-
+	
+	System.out.println("Count of Digits: " + countDigits(num));
+        System.out.println("Digits Array: " + Arrays.toString(getDigitsArray(num)));
+        System.out.println("Reversed Digits Array: " + Arrays.toString(reverseDigitsArray(getDigitsArray(num))));
+	findLargestAndSecondLargest(num);
+        findSmallestAndSecondSmallest(num);
+        System.out.println("Is Palindrome? " + isPalindrome(num));
+        System.out.println("Is Duck Number? " + isDuckNumber(num));
+        System.out.println("Is Armstrong Number? " + isArmstrong(num));
+        System.out.println("Sum of Digits: " + sumOfDigits(num));
         System.out.println("Is Prime? " + isPrime(num));
-        System.out.println("Is Neon Number? " + isNeonNumber(num));
-        System.out.println("Is Spy Number? " + isSpyNumber(num));
-        System.out.println("Is Automorphic Number? " + isAutomorphic(num));
-        System.out.println("Is Buzz Number? " + isBuzzNumber(num));
+        System.out.println("Factors: " + Arrays.toString(findFactors(num)));
+        System.out.println("Greatest Factor: " + greatestFactor(num));
+        System.out.println("Sum of Factors: " + sumOfFactors(num));
+        System.out.println("Product of Factors: " + productOfFactors(num));
+        System.out.println("Product of Cube of Factors: " + productOfCubeOfFactors(num));
+        System.out.println("Is Perfect Number? " + isPerfectNumber(num));
+        System.out.println("Is Abundant Number? " + isAbundantNumber(num));
+        System.out.println("Is Deficient Number? " + isDeficientNumber(num));
+        System.out.println("Is Strong Number? " + isStrongNumber(num));
     }
 }
+
+
