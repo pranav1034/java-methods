@@ -130,27 +130,52 @@ class NumberChecker {
         return areArraysEqual(digits, reversed);
     }
 
+    // Method to check if a number is prime
+    public static boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+
+    // Method to check if a number is a neon number
+    public static boolean isNeonNumber(int num) {
+        int square = num * num;
+        return sumOfDigits(square) == num;
+    }
+
+    // Method to check if a number is a spy number
+    public static boolean isSpyNumber(int num) {
+        int[] digits = getDigitsArray(num);
+        int sum = 0, product = 1;
+        for (int digit : digits) {
+            sum += digit;
+            product *= digit;
+        }
+        return sum == product;
+    }
+
+    // Method to check if a number is an automorphic number
+    public static boolean isAutomorphic(int num) {
+        int square = num * num;
+        return String.valueOf(square).endsWith(String.valueOf(num));
+    }
+
+    // Method to check if a number is a buzz number
+    public static boolean isBuzzNumber(int num) {
+        return num % 7 == 0 || num % 10 == 7;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int num = sc.nextInt();
 
-        System.out.println("Number of digits: " + countDigits(num));
-        System.out.println("Is Palindrome? " + isPalindrome(num));
-        System.out.println("Is Duck Number? " + isDuckNumber(num));
-        System.out.println("Is Armstrong Number? " + isArmstrong(num));
-        findLargestAndSecondLargest(num);
-        findSmallestAndSecondSmallest(num);
-        System.out.println("Sum of Digits: " + sumOfDigits(num));
-        System.out.println("Sum of Squares of Digits: " + sumOfSquaresOfDigits(num));
-        System.out.println("Is Harshad Number? " + isHarshadNumber(num));
-
-        int[][] frequency = digitFrequency(num);
-        System.out.println("Digit Frequency:");
-        for (int i = 0; i < 10; i++) {
-            if (frequency[i][1] > 0) {
-                System.out.println("Digit " + frequency[i][0] + " appears " + frequency[i][1] + " times");
-            }
-        }
+        System.out.println("Is Prime? " + isPrime(num));
+        System.out.println("Is Neon Number? " + isNeonNumber(num));
+        System.out.println("Is Spy Number? " + isSpyNumber(num));
+        System.out.println("Is Automorphic Number? " + isAutomorphic(num));
+        System.out.println("Is Buzz Number? " + isBuzzNumber(num));
     }
 }
